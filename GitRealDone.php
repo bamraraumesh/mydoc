@@ -109,3 +109,37 @@ answer: search
 
  permission for perticular file : chmod 777 yourfilename.php
  permission for folder : chmod -R 777 yourfolderName
+
+
+ 
+// suppose i made the database and my team working on a project in laravel and pulling and pushing   using git and a team memeber create a new table for new form handling so who the other team members should aware of that they have to also add new table in datable
+ explain with the senario  
+
+
+
+
+In a scenario where you're working on a Laravel project with a team using Git for version control, and a team member creates a new table for handling a new form, it's important to ensure that all team members are aware of this change so they can update their local databases accordingly. Here's how you can ensure effective communication and coordination within the team:
+
+Utilize Git Branches:
+
+Ensure that your team follows a Git branching strategy, such as Gitflow, where each feature or task is developed in a separate branch.
+When a team member creates a new table for handling a form, they should create a new branch specifically for this task. This makes it easier to track changes related to specific features.
+Code Review:
+
+Encourage code reviews within your team. When a team member pushes their changes to the remote repository, other team members can review the code changes.
+During code review, team members can identify any database schema changes and discuss them. This helps in keeping everyone informed about the changes being made to the database structure.
+Documentation:
+
+Maintain documentation for your project, including database schema changes. When a new table is added, ensure that it's documented in a central location such as a README file or a separate document dedicated to database schema.
+Documenting changes ensures that all team members can refer to the documentation to understand the database structure and any recent modifications.
+Communication:
+
+Foster open communication within the team. If a team member creates a new table for handling a form, they should inform other team members about this change through team meetings, messaging platforms, or project management tools.
+Encourage team members to communicate any significant changes they make to the project, including database schema changes.
+Database Migrations:
+
+In Laravel, database schema changes are typically managed using migrations. When a new table is created, it should be accompanied by a migration file.
+Team members should run database migrations locally after pulling the latest changes from the repository to ensure their local databases are up-to-date with the latest schema changes.
+By following these practices, you can ensure that all team members are aware of new database tables created for handling forms and that they update their local databases accordingly. Effective communication, documentation, and adherence to development processes such as code review and Git branching strategies are key to successful collaboration in a team project.
+
+
