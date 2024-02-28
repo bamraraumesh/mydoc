@@ -1,0 +1,58 @@
+NEW Live Jimmy DB instance:
+mysql -h jimmy-prod.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p
+
+jimmy new username
+mysql -h  jimmy-prod-utf8-2023.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p
+
+
+
+
+Server IP : 54.76.183.11
+Username : ec2-user
+
+NEW UAT DB instance
+mysql -h jimmy-new-uat-utf8.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p
+
+Username : JIMMEH
+Password : dsfAgfrty[lp65j7u956y
+to  
+ 
+emctest.stagedetails =  name of all the stages
+Note: if you want to take backup don't got to  MySQL [elsevier]>  control c
+for whole database
+mysqldump -h mysql-uat-utf8.jimmy.elsevierhealth.com -u JIMMEH -p elsevier > /home/ec2-user/umesh/ub_backUp.sql
+
+for perticular table in database
+mysql -h jimmy-new-uat-utf8.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p -e " select distinct aut_id,aut_nom,aut_prenom,aut_initiales,aut_nom_cle,aut_prenom_cle from auteur " elsevier > /home/ec2-user/ub_auteur.sql 
+
+mysql -h mysql -h jimmy-prod.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p -e " select distinct aut_id,aut_nom,aut_prenom,aut_initiales,aut_nom_cle,aut_prenom_cle from auteur order by aut_id " elsevier > /home/ec2-user/ub_auteur.xls 
+tdprocess
+https://uat.jimmy.elsevierhealth.com/elsevier/php/tdprocess/conversion_project/index.php
+
+dhonore
+ubkapass
+diamant
+
+show perticular procedure
+ SHOW CREATE PROCEDURE suppression_refontes;
+
+
+
+select *  from tbl_vue_fascicule_maj  where maj_id=11922 and maj_no=222 and fas_id=70729;
+
+SELECT	DISTINCT tra.tra_id, tra.tra_titre, cha.cha_id, cha.cha_nom, cha.cha_rang, sch.sch_id, sch.sch_nom, fas.fas_id, fas.fas_numero, typ.typ_abv, fas.fas_code, vol.vol_id, vol.vol_no, typ.typ_sgml, fas.eht_id, fas.fas_a_charger, fas.fas_titre, maj.maj_cote, maj.maj_annee, fas.fas_nb_pages,typ.typ_id, fas.fas_modif_pdf, ifnull(fas.fas_imp_type,0) , maj.maj_id from tbl_vue_fascicule tbl, traite tra, chapitre cha, sous_chapitre sch, fascicule fas, mise_a_jour maj,type typ, volume vol where tbl.tra_id = tra.tra_id and tbl.vol_id = vol.vol_id and tbl.cha_id = cha.cha_id and tbl.sch_id = sch.sch_id and tbl.typ_id = typ.typ_id and tbl.fas_id = fas.fas_id and tbl.maj_creation = maj.maj_id
+
+select tra.tra_titre, maj.maj_annee, CASE maj.maj_cote WHEN 0 THEN '0' ELSE CONCAT(IFNULL(FORMAT(maj.maj_cote,'fmRN'),''),'') END,maj.maj_type_cote, maj.maj_no from mise_a_jour maj, traite tra where maj.maj_id=11974 and tra.tra_id=maj.tra_id"
+
+
+html_entity_decode(stripslashes
+
+update fascicule set fas_titre="" where fas_code='';
+select fas_id,fas_code,fas_numero,fas_titre from fascicule where fas_code='10-35274';
+
+
+update fascicule set fas_titre = REPLACE(fas_titre,"Ginecologà­a","Ginecología") where fas_titre like "%Ginecologà­a%";
+
+update fascicule set fas_titre = REPLACE(fas_titre,"à­","í") where fas_titre like "%à­%";
+
+

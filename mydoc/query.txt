@@ -1,0 +1,124 @@
+
+===============================================================================================================================================================================================================
+for whole database
+mysqldump -h mysql-uat-utf8.jimmy.elsevierhealth.com -u JIMMEH -p elsevier > /home/ec2-user/umesh/ub_backUp.sql
+===============================================================================================================================================================================================================
+for perticular table in database
+mysql -h jimmy-new-uat-utf8.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p -e "SELECT res_id from resume" elsevier > /home/ec2-user/resume.xls 
+tdprocess
+===============================================================================================================================================================================================================
+SELECT fas_titre FROM fascicule WHERE FAS_TITRE  REGEXP '[a-zA-Z][0-9]+';
+
+SELECT fas_code_num,fas_numero,fas_titre FROM fascicule WHERE FAS_TITRE  REGEXP '[a-zA-Z][0-9]+'   order by fas_numero asc ;
+
+ SELECT fas_code_num,fas_numero,fas_titre FROM fascicule WHERE FAS_TITRE  REGEXP [0-9]+'[a-zA-Z]'   order by fas_numero asc ;
+
+select * from  emctest.satgeprocess order by fas_code_num desc limit 10;
+
+$QUERY_USER = "SELECT uti_id,DOM_ID FROM utilisateur WHERE uti_login='" . $REMOTE_USER . "'";
+
+===============================================================================================================================================================================================================
+for creating csv file of a perticular table uat dump
+mysql -h jimmy-new-uat-utf8.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p -e "select distinct aut_id,aut_nom,aut_prenom,aut_initiales,aut_nom_cle,aut_prenom_cle from auteur" elsevier > auteur_ub.xls; 
+===============================================================================================================================================================================================================
+for dump of perticular table
+mysql -h mysql-uat-utf8.jimmy.elsevierhealth.com -u JIMMEH -p -e "select * from auteur" elsevier > auteur_ub.sql;
+
+live dump
+
+mysql -h jimmy-prod.chkgypymfncs.eu-west-1.rds.amazonaws.com -u JIMMEH -p -e "select * from auteur" elsevier > auteur_ub.sql; 
+===============================================================================================================================================================================================================
+for check the default character set name
+SELECT default_character_set_name FROM information_schema.SCHEMATA WHERE schema_name = 'your_database_name';
+===============================================================================================================================================================================================================
+for changing the charset of perticular table column
+ALTER TABLE `fascicule`
+MODIFY COLUMN `FAS_TITRE` VARCHAR(512) COLLATE utf8_general_ci DEFAULT NULL;
+===============================================================================================================================================================================================================
+dublicate feild count with column name which is greater then 1
+select aut_nom,count(aut_nom),aut_prenom,count(aut_prenom),aut_initiales,count(aut_initiales)  from auteur group by aut_nom having count(aut_nom)>1 and count(aut_prenom)>1 and count(aut_initiales)>1;
+===============================================================================================================================================================================================================
+In case you want to delete duplicate rows and keep the lowest id, you can use the following statement:
+DELETE c1 FROM contacts c1
+INNER JOIN contacts c2 
+WHERE
+    c1.id > c2.id AND 
+    c1.email = c2.email;
+
+another way of deleting
+DELETE FROM `tablename`
+  WHERE `id` NOT IN (
+    SELECT * FROM (
+      SELECT MAX(`id`) FROM `tablename`
+        GROUP BY `email`
+    ) tbl
+  )
+===============================================================================================================================================================================================================
+changes did extraction table matieres = add utf in conn, and remove utf8 from fwrite($file_tdm,$chaine)
+===============================================================================================================================================================================================================
+last execution date of mysql procedure =
+SELECT ROUTINE_SCHEMA as schemaname,
+SPECIFIC_NAME AS STOREDPROCEDURENAME,
+CREATED AS CREATEDATE,
+LAST_ALTERED AS LASTMODIFIEDDATE
+FROM
+INFORMATION_SCHEMA.ROUTINES where ROUTINE_SCHEMA = 'elsevier' and ROUTINE_NAME = 'creation_auteur';
+===============================================================================================================================================================================================================
+if you want commit or rollback feature then use START TRANSACTION; like below
+- Start a transaction
+START TRANSACTION;
+
+-- Your UPDATE statement
+UPDATE auteur
+JOIN auteur_redaction ON auteur_redaction.aur_nom = auteur.AUT_NOM
+                     AND auteur_redaction.aur_initiales = auteur.AUT_INITIALES
+SET auteur.AUT_PRENOM = auteur_redaction.aur_prenom,
+    auteur.AUT_NOM_CLE = auteur_redaction.aur_nom_cle,
+    auteur.AUT_PRENOM_CLE = auteur_redaction.aur_prenom_cle;
+
+-- Commit the changes if everything is okay
+COMMIT;
+
+-- Or, if you need to rollback the changes
+-- ROLLBACK;
+===============================================================================================================================================================================================================
+
+NOTE : To commit the changes, you can use the COMMIT; statement. If you need to roll back the changes, you can use the ROLLBACK; statement instead of COMMIT. When you issue the ROLLBACK statement, it will undo all changes made within the transaction, effectively reverting your data to its previous state.
+===============================================================================================================================================================================================================
+Remember to exercise caution when working with transactions, and ensure that you're in a safe testing environment before making changes to production data.
+
+select aur_nom,aur_prenom,AUR_INITIALES,AUR_NOM_CLE,AUR_PRENOM_CLE from auteur_redaction where AUR_INITIALES='V' and aur_nom='Bautrant' limit 5;
+
+===============================================================================================================================================================================================================
+
+ -- Start a transaction
+START TRANSACTION;
+
+-- SELECT statement to preview the records that will be affected
+SELECT auteur.AUT_NOM, auteur.AUT_INITIALES, 
+       auteur_redaction.aur_prenom AS NEW_AUT_PRENOM, 
+       auteur_redaction.aur_nom_cle AS NEW_AUT_NOM_CLE, 
+       auteur_redaction.aur_prenom_cle AS NEW_AUT_PRENOM_CLE
+FROM auteur
+JOIN auteur_redaction ON auteur_redaction.aur_nom = auteur.AUT_NOM
+                     AND auteur_redaction.aur_initiales = auteur.AUT_PRENOM;
+
+-- UPDATE statement to make the changes
+UPDATE auteur
+JOIN auteur_redaction ON auteur_redaction.aur_nom = auteur.AUT_NOM
+                     AND auteur_redaction.aur_initiales = auteur.AUT_PRENOM
+SET auteur.AUT_PRENOM = auteur_redaction.aur_prenom,
+    auteur.AUT_NOM_CLE = auteur_redaction.aur_nom_cle,
+    auteur.AUT_PRENOM_CLE = auteur_redaction.aur_prenom_cle;
+
+-- If the changes are correct, commit the transaction
+-- COMMIT;
+
+-- Or, if you need to rollback the changes
+-- ROLLBACK;
+===============================================================================================================================================================================================================
+select count(*) from auteur where aut_prenom like '%.%' limit 10;
+===============================================================================================================================================================================================================
+ select aur_nom,aur_prenom,AUR_INITIALES,AUR_NOM_CLE,AUR_PRENOM_CLE from auteur_redaction where  aur_nom='Lance';
+===============================================================================================================
+
