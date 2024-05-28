@@ -1,0 +1,75 @@
+checking for remote origin
+git remote -v
+connect with remote origin
+ git init -b main
+
+
+git remote add origin username@189.14.666.666:/home/ubuntu/workspace/project.git
+if you want to remove remote origin
+git remote remove origin 
+
+
+git clone (url)
+change the file then do
+
+git init
+git status(for checking local status)
+git diff(it show the differenc in local area and in staged area)
+Now taking it to the taging index below
+git add nameoffile (for moving final selected file from  working area to staging index )
+note: if you want to take all the file to stage you can use
+git add .
+git status(Now you will check the status again you will se it is staged and in green colour)
+Note: if you think that you don't want/by mistake to take it in staged you can unstaged it by this command
+git restore --staged nameoffile or
+git reset Head nameoffile 
+
+
+ git commit (its ensure that the staging index file is save and ready to move to the server or central repository or main repository)
+give comment message :
+git push
+enter username:
+password:
+another way of git commit with msg is
+git commit -m "adding button"
+
+NOTE: if you dont want to check status ,diff and staging all directly want commit in one step you can do like this
+git commit -a -m "third commit"
+
+git log (for logs)
+git checkout -b newbranchname(for switing to the new branch or creating new branch )
+note:always check in which branch we are before push
+git touch newfilename(for creating new file)
+
+get checkout main(from switch newbranchname to main branch)
+git branch --show-current(for showing current branch )
+
+Remote commit(done by others)
+Note: before pushing the code we have to pull the changes from the github then do push
+
+git fetch(it connect our local to remote if we want to se the changes done by other)
+now if we want to take that commint from the main branch we can use pull like below
+git merge origin/main or git push
+Now you can see the change using ls and then and check filename
+
+Resolving conflits (suppose two person are working on the same file and have same parent then in this situation git will reject the push of last upated person so in this situation we can first wait for the person to commint and then pull the file and copy their own changes and then push )
+
+
+issus:
+Increase the Git buffer size to the largest individual file size of your repo:
+git config --global http.postBuffer 157286400
+or try this
+git gc
+git fsck
+
+delte the remote branch
+git push -d <remote_name> <branchname>
+or
+git branch -D <branch_name>
+
+delting branches form git(locally)
+git branch -m master old_master (backup the branch and then create the orphan using below command)
+git checkout --orphan master
+Note: Since the current branch now has no history, some commands may fail with errors like fatal: bad default revision 'HEAD' until after you make your first commit on the new master branch. This is normal, and is the same behavior you see in freshly-initialized repositories.
+
+Elsevier09

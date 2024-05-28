@@ -1,0 +1,16 @@
+Login as : ec2-user
+sudo bash (for connect root user)
+su webuser (for connect webuser )
+cd /sitesweb/elsevier (connect elsevier folder)
+ll (for list of files in this folder)
+cd php for going in php folder
+UAT IP 54.76.183.11
+Live IP 52.50.13.178
+
+
+Live URL : https://jimmy.elsevier.com/elsevier/index.php
+UAT URL : https://uat.jimmy.elsevierhealth.com/elsevier/index.php
+
+filezilla loaction files = /uranus/vol5/mcp/sitesweb/elsevier
+Username : umesh
+Password  :  P@ssw0rd123

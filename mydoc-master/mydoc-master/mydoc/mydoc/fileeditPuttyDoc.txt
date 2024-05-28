@@ -1,0 +1,43 @@
+UAT  FIle modified process using putty
+
+sudo bash
+su webuser
+cd /uranus/vol6/aps/
+ll (for chechking list of files)
+ls -ltr(list of files according descending modification)
+cp comment.php comments-16-06-2023 (for making backup copy of files if needed)
+vi process.php(for opening files)
+i(for editing the file)
+then esc and shf+colon wq!(for saving in that file changes)
+wq(for saving in all files)
+and q!(save file without changes)
+
+for searching  / then (text you want to search in file )
+
+https://uat.jimmy.elsevierhealth.com:8443/aps/preview.php?NDA2OTM=$@OTQ3NDMy
+Ce volume ne sera conna que dans la I-3000
+
+for deleting the folder which is unable to delete  in ftp due to permission use putty login and write
+sudo bash
+su webuser
+paste the file path from filezilla or available like 
+cd /uranus/vol1/ftp/jimmydelivery/For_DVD
+then write this command on putty  rm -r ANS  where ANS is a folder name which you want to delete
+
+A closure is a feature of JavaScript that allows inner functions to access the 
+outer scope of a function. 
+Closure helps in binding a function to its outer boundary and is created automatically
+ whenever a function is created. A block is also treated as a scope since ES6. 
+Since JavaScript is event-driven so closures are useful as it helps to maintain 
+the state between events.
+
+Prerequisite:: Variable Scope in JavaScript 
+
+Lexical Scoping: A function scope’s ability to access variables from the parent scope
+ is known as lexical scope. We refer to the parent function’s lexical binding of 
+the child function as “lexically binding.”
+
+Let’s see and understand closure through an example. 
+
+
+/uranus/vol6/aps/tmp/archive/40693_2023-06-30_10-21-24/947432.zip
